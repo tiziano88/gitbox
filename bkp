@@ -1,0 +1,38 @@
+#!/bin/bash
+
+SCRIPT=$(realpath $0)
+SCRIPTDIR=$(dirname $SCRIPT)
+
+LISTFILENAME='list'
+LIST=$SCRIPTDIR/$LISTFILENAME
+
+touch $LIST
+
+case $1 in
+  'add')
+    ORIGINAL=$(realpath $2)
+    TRACKED=$SCRIPTDIR/$ORIGINAL
+    TRACKEDDIR=$(dirname $TRACKED)
+    if [[ -d $TRACKEDDIR ]]; then
+      echo "directory existing"
+      exit
+    fi
+    mkdir --parents $TRACKEDDIR
+    mv $ORIGINAL $TRACKEDDIR
+    ln --symbolic $TRACKED $ORIGINAL
+    printf "%q\n" $ORIGINAL >> $LIST
+    ;;
+  'restore')
+    echo 'not implemented'
+    ;;
+  'install')
+    while read ORIGINAL
+    do
+      TRACKED=$SCRIPTDIR/$ORIGINAL
+      ln --symbolic $TRACKED $ORIGINAL
+    done < $LIST
+    ;;
+  *)
+    echo 'invalid usage'
+    ;;
+esac
