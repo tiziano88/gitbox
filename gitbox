@@ -26,10 +26,14 @@ case $1 in
     echo 'not implemented'
     ;;
   'push')
-    git --git-dir $TRACKEDDIR push
+    cd $SCRIPTDIR
+    git add .
+    git commit -am "$(date)"
+    git push
     ;;
   'pull')
-    git --git-dir $TRACKEDDIR pull
+    cd $SCRIPTDIR
+    git pull
     ;;
   'install')
     while read ORIGINAL
