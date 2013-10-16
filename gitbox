@@ -25,6 +25,12 @@ case $1 in
   'restore')
     echo 'not implemented'
     ;;
+  'push')
+    git --git-dir $TRACKEDDIR push
+    ;;
+  'pull')
+    git --git-dir $TRACKEDDIR pull
+    ;;
   'install')
     while read ORIGINAL
     do
