@@ -11,14 +11,20 @@ replacing the originals with symlinks to the new location.
 2.   if you want, make an alias to gitbox so you do not have to remember its
      absolute path when invoking it. In zsh this would be
 
-         alias gitbox=/home/xxx/src/gitbox/gitbox
+```bash
+alias gitbox=/home/xxx/src/gitbox/gitbox
+```
 
 3.   add any file or folder on your hard drive to gitbox with the command:
 
-         gitbox add ~/.myconfigfile
+```bash
+gitbox add ~/.myconfigfile
+```
 
 4.   when you move to a new computer, clone your gitbox repository, and just run
 
-        gitbox install
+```bash
+gitbox install
+```
 
     and all your files will appear in the right places via symlinks.
