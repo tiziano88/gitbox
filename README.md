@@ -17,7 +17,16 @@ replacing the originals with symlinks to the new location.
 
          gitbox add ~/.myconfigfile
 
-4.   when you move to a new computer, clone your gitbox repository, and just run
+4.   commit all the tracked files at once with a message containing the current
+     date, with the command:
+
+         gitbox push
+
+5.   update the current repository with the command:
+
+         gitbox pull
+
+6.   when you move to a new computer, clone your gitbox repository, and just run
 
         gitbox install
 
