@@ -26,5 +26,4 @@ gitbox add ~/.myconfigfile
 ```bash
 gitbox install
 ```
-
     and all your files will appear in the right places via symlinks.
