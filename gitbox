@@ -27,9 +27,9 @@ case $1 in
       echo "directory existing"
       exit
     fi
-    mkdir -p $TRACKEDDIR
-    mv $ORIGINAL $TRACKEDDIR
-    ln -s $TRACKED $ORIGINAL
+    mkdir -p $TRACKEDDIR &&
+    mv $ORIGINAL $TRACKEDDIR &&
+    ln -s $TRACKED $ORIGINAL &&
     printf "%q\n" $ORIGINAL >> $LIST
     ;;
   'restore')
@@ -37,9 +37,9 @@ case $1 in
     ;;
   'push')
     cd $SCRIPTDIR
-    git add .
-    git commit -am "$(date)"
-    git pull
+    git add . &&
+    git commit -am "$(date)" &&
+    git pull &&
     git push
     ;;
   'pull')
