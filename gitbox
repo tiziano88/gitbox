@@ -25,15 +25,12 @@ case $1 in
     TRACKEDDIR=$(dirname $TRACKED)
     if [[ -d $TRACKEDDIR ]]; then
       echo "directory existing"
-      exit
+      exit -1
     fi
     mkdir -p $TRACKEDDIR &&
     mv $ORIGINAL $TRACKEDDIR &&
     ln -s $TRACKED $ORIGINAL &&
     printf "%q\n" $ORIGINAL >> $LIST
-    ;;
-  'restore')
-    echo 'not implemented'
     ;;
   'push')
     cd $SCRIPTDIR
@@ -54,7 +51,7 @@ case $1 in
     done < $LIST
     ;;
   *)
-    echo "usage: $SCRIPTFILENAME add <source_file>"
+    echo "usage: $SCRIPTFILENAME add <source>"
     echo "       $SCRIPTFILENAME push|pull|install"
     ;;
 esac
