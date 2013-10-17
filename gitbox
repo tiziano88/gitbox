@@ -28,9 +28,9 @@ case $1 in
       echo "directory existing"
       exit
     fi
-    mkdir --parents $TRACKEDDIR
+    mkdir -p $TRACKEDDIR
     mv $ORIGINAL $TRACKEDDIR
-    ln --symbolic $TRACKED $ORIGINAL
+    ln -s $TRACKED $ORIGINAL
     printf "%q\n" $ORIGINAL >> $LIST
     ;;
   'restore')
@@ -51,7 +51,7 @@ case $1 in
     while read ORIGINAL
     do
       TRACKED=$SCRIPTDIR/$ORIGINAL
-      ln --symbolic $TRACKED $ORIGINAL
+      ln -s $TRACKED $ORIGINAL
     done < $LIST
     ;;
   *)
