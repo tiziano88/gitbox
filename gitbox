@@ -6,6 +6,7 @@ realpath() {
 
 SCRIPT=$(realpath $0)
 SCRIPTDIR=$(dirname $SCRIPT)
+SCRIPTFILENAME=$(basename $SCRIPT)
 
 LISTFILENAME='list'
 LIST=$SCRIPTDIR/$LISTFILENAME
@@ -54,7 +55,7 @@ case $1 in
     done < $LIST
     ;;
   *)
-    echo "usage: $0 add <source_file>"
-    echo "       $0 push|pull|install"
+    echo "usage: $SCRIPTFILENAME add <source_file>"
+    echo "       $SCRIPTFILENAME push|pull|install"
     ;;
 esac
