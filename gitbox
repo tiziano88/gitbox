@@ -11,12 +11,13 @@ SCRIPTFILENAME=$(basename $SCRIPT)
 LISTFILENAME='list'
 LIST=$SCRIPTDIR/$LISTFILENAME
 
-HARDLINKS=0
-while getopts "a" opt; do
+FORCE=''
+while getopts "f" opt; do
   case $opt in
-    a) HARDLINKS=1;;
+    'f') FORCE='-f';;
   esac
 done
+shift $((OPTIND-1))
 
 case $1 in
   'add')
@@ -47,7 +48,7 @@ case $1 in
     while read ORIGINAL
     do
       TRACKED=$SCRIPTDIR/$ORIGINAL
-      ln -s $TRACKED $ORIGINAL
+      ln -s $FORCE $TRACKED $ORIGINAL
     done < $LIST
     ;;
   *)
