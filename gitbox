@@ -10,10 +10,16 @@ SCRIPTDIR=$(dirname $SCRIPT)
 LISTFILENAME='list'
 LIST=$SCRIPTDIR/$LISTFILENAME
 
-touch $LIST
+HARDLINKS=0
+while getopts "a" opt; do
+  case $opt in
+    a) HARDLINKS=1;;
+  esac
+done
 
 case $1 in
   'add')
+    touch $LIST
     ORIGINAL=$(realpath $2)
     TRACKED=$SCRIPTDIR/$ORIGINAL
     TRACKEDDIR=$(dirname $TRACKED)
@@ -48,6 +54,7 @@ case $1 in
     done < $LIST
     ;;
   *)
-    echo "usage: $0 (add|push|pull|install)"
+    echo "usage: $0 add <source_file>"
+    echo "       $0 push|pull|install"
     ;;
 esac
